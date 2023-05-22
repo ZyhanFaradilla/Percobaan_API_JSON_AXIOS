@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar AXIOS</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>BELAJAR AXIOS</h1>
+    <button onclick="addEmployee()" style="padding: 10px; color: blue; background-color: darkseagreen;">AddEmployee</button>
+    <button onclick="updateEmployee()" style="padding: 10px; color: blue; background-color: darkseagreen;">UpdateEmployee</button>
+    <button onclick="deleteEmployee()" style="padding: 10px; color: blue; background-color: darkseagreen;">DeleteEmployee</button>
+</body>
+<script>
+   /* Untuk get data json 
+    axios
+    .get("http://localhost:3000/employees")
+    .then(({data})=>{
+        console.log("-file: index.html - line 17 - response",data);
+    })
+    .catch((err) => {
+        console.log("-file: index.html - line 20 - error", err);
+    })
+    .finally(()=> {
+        console.log("request selesai");
+    }); */
+
+    /* Untuk menambahkan data baru di json
+    function addEmployee() {
+        const newEmployees = {
+          first_name: "Siska",
+          last_name: "Yuliana",
+          email: "siska@gmail.com"  
+        };
+
+        axios
+        .post("http://localhost:3000/employees", newEmployees)
+        .then(({data})=>{
+            console.log("-file : index.html - line 38 - then - data", data);
+        })
+        .catch((err)=>{
+            console.log("-file : index.html - line 41 - addEmployee - error -", err);
+        })
+        .finally(()=>{
+            console.log("request selesai");
+        });
+    }*/
+
+    /* Untuk mengubah data json pada keseluruhan data dengan put
+        function updateEmployee() {
+        const updateEmployees = {
+          first_name: "Zul",
+          last_name: "Fatur",
+          email: "zul@gmail.com"  
+        };
+
+        const employeesid = 9;
+
+        axios
+        .put(`http://localhost:3000/employees/${employeesid}`, updateEmployees)
+        .then(({data})=>{
+            console.log("-file : index.html - line 61 - then - data", data);
+        })
+        .catch((err)=>{
+            console.log("-file : index.html - line 64 - updateEmployee - error -", err);
+        })
+        .finally(()=>{
+            console.log("request selesai");
+        });
+    }*/
+
+    /* Untuk mengubah data json pada beberapa data dengan patch
+        function updateEmployee() {
+        const updateEmployees = {
+          last_name: "Cantika",
+          email: "ana@gmail.com"  
+        };
+
+        const employeesid = 3;
+
+        axios
+        .patch(`http://localhost:3000/employees/${employeesid}`, updateEmployees)
+        .then(({data})=>{
+            console.log("-file : index.html - line 86 - then - data", data);
+        })
+        .catch((err)=>{
+            console.log("-file : index.html - line 89 - patchEmployee - error -", err);
+        })
+        .finally(()=>{
+            console.log("request selesai");
+        });
+    }*/
+
+    /* Untuk menghapus data pada json
+        function deleteEmployee() {
+        const deleteEmployeesid = 11;
+
+        axios
+        .delete(`http://localhost:3000/employees/${deleteEmployeesid}`)
+        .then(({data})=>{
+            console.log("-file : index.html - line 102 - then - data", data);
+        })
+        .catch((err)=>{
+            console.log("-file : index.html - line 105 - deleteEmployee - error -", err);
+        })
+        .finally(()=>{
+            console.log("request selesai");
+        });
+    }*/
+
+    /* Untuk menggunakan config 
+    function updateEmployee() {
+        const updateEmployees = {
+          first_name: "Setia",
+          last_name: "Suryanto",
+          email: "setia@gmail.com"  
+        };
+
+        const employeesid = 2;
+
+        axios({
+            method : "PUT", /* Method bisa diganti sesuai yang diinginkan seperti PUT, GET, PATCH, POST, DAN DELETE 
+            url : `http://localhost:3000/employees/${employeesid}`,
+            data : updateEmployees,
+        })
+        .then(({data})=>{
+            console.log("-file : index.html - line 38 - then - data", data);
+        })
+        .catch((err)=>{
+            console.log("-file : index.html - line 41 - addEmployee - error -", err);
+        })
+        .finally(()=>{
+            console.log("request selesai");
+        });
+    }*/
+
+
+        const myInstance = axios.create({
+        baseURL : "http://localhost:3000",
+    });
+
+    myInstance
+    .get("/employees")
+    .then(({data})=>{
+        console.log("-file: index.html - line 17 - response",data);
+    })
+    .catch((err) => {
+        console.log("-file: index.html - line 20 - error", err);
+    })
+    .finally(()=> {
+        console.log("request selesai");
+    }); 
+
+    function addEmployee() {
+        const newEmployees = {
+          first_name: "Siska",
+          last_name: "Yuliana",
+          email: "siska@gmail.com"  
+        };
+
+        myInstance
+        .post("/employees", newEmployees)
+        .then(({data})=>{
+            console.log("-file : index.html - line 38 - then - data", data);
+        })
+        .catch((err)=>{
+            console.log("-file : index.html - line 41 - addEmployee - error -", err);
+        })
+        .finally(()=>{
+            console.log("request selesai");
+        });
+    }
+
+        function deleteEmployee() {
+        const deleteEmployeesid = 11;
+
+        myInstance
+        .delete(`/employees/${deleteEmployeesid}`)
+        .then(({data})=>{
+            console.log("-file : index.html - line 102 - then - data", data);
+        })
+        .catch((err)=>{
+            console.log("-file : index.html - line 105 - deleteEmployee - error -", err);
+        })
+        .finally(()=>{
+            console.log("request selesai");
+        });
+    }
+
+    function updateEmployee() {
+        const updateEmployees = {
+          first_name: "Anisa",
+          last_name: "Ramadhani",
+          email: "anisar@gmail.com"  
+        };
+
+        const employeesid = 3;
+
+        myInstance({
+            method : "PUT", 
+            url : `/employees/${employeesid}`,
+            data : updateEmployees,
+        })
+        .then(({data})=>{
+            console.log("-file : index.html - line 38 - then - data", data);
+        })
+        .catch((err)=>{
+            console.log("-file : index.html - line 41 - addEmployee - error -", err);
+        })
+        .finally(()=>{
+            console.log("request selesai");
+        });
+    }
+</script>
+</html>
